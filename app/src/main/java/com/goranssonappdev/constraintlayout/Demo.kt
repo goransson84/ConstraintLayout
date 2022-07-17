@@ -21,8 +21,11 @@ fun ConstraintLayoutDemo() {
         val text1 = createRef()
 
         // Assigning a reference
+        // Adding constraints
         Text(text = "Hello" , modifier = Modifier.constrainAs(text1) {
             // Constraints here
+            top.linkTo(parent.top, margin = 16.dp)
+            bottom.linkTo(parent.bottom, margin = 16.dp)
         })
 
         // Multiple references
