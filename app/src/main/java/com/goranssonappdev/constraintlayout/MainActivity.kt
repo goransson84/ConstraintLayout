@@ -39,7 +39,7 @@ fun MainScreen() {
         MyButton(text = "Button1", Modifier.constrainAs(button1) {
 
             top.linkTo(parent.top, margin = 60.dp)
-            linkTo(parent.start, parent.end, bias = 0.75f)
+            linkTo(parent.start, parent.end, startMargin = 30.dp, endMargin = 50.dp,)
 
         })
 
