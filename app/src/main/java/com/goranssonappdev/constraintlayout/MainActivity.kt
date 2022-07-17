@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -30,6 +31,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
 
+}
+
+// Adding a custom button composable
+@Composable
+fun MyButton(text: String, modifier: Modifier = Modifier) {
+    Button(
+        onClick = { },
+        modifier = modifier
+    ) {
+        Text(text = text)
+    }
 }
 
 @Preview(showBackground = true)
