@@ -15,5 +15,11 @@ fun ConstraintLayoutDemo() {
         .size(width = 200.dp, height = 300.dp)
         .background(Color.Green)) {
 
+        // Single reference
+        val text1 = createRef()
+
+        // Multiple references
+        val (button, text2, text3) = createRefs()
+
     }
 }
