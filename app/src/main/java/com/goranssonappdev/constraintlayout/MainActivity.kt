@@ -13,8 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.goranssonappdev.constraintlayout.ui.theme.ConstraintLayoutTheme
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +35,22 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
-    ConstraintLayout(Modifier.size(width = 200.dp, height = 200.dp)) {
+    ConstraintLayout(Modifier.size(width = 400.dp, height = 200.dp)) {
         val (button1, button2, button3) = createRefs()
 
+        createHorizontalChain(button1, button2, button3, chainStyle = ChainStyle.SpreadInside)
+
+
         MyButton(text = "Button1", Modifier.constrainAs(button1) {
+            centerVerticallyTo(parent)
+        })
 
-            top.linkTo(parent.top, margin = 60.dp)
-            linkTo(parent.start, parent.end, startMargin = 30.dp, endMargin = 50.dp,)
+        MyButton(text = "Button2", Modifier.constrainAs(button2) {
+            centerVerticallyTo(parent)
+        })
 
+        MyButton(text = "Button3", Modifier.constrainAs(button3) {
+            centerVerticallyTo(parent)
         })
 
     }
