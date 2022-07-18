@@ -11,6 +11,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
@@ -35,22 +36,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
-    ConstraintLayout(Modifier.size(width = 400.dp, height = 200.dp)) {
+    ConstraintLayout(Modifier.size(width = 400.dp, height = 250.dp)) {
         val (button1, button2, button3) = createRefs()
 
-        createHorizontalChain(button1, button2, button3, chainStyle = ChainStyle.SpreadInside)
-
+        val guide = createGuidelineFromStart(fraction = .60f)
 
         MyButton(text = "Button1", Modifier.constrainAs(button1) {
-            centerVerticallyTo(parent)
+            top.linkTo(parent.top, margin = 30.dp)
+            end.linkTo(guide, margin = 30.dp)
         })
 
         MyButton(text = "Button2", Modifier.constrainAs(button2) {
-            centerVerticallyTo(parent)
+            top.linkTo(button1.bottom, margin = 20.dp)
+            start.linkTo(guide, margin = 40.dp)
         })
 
         MyButton(text = "Button3", Modifier.constrainAs(button3) {
-            centerVerticallyTo(parent)
+            top.linkTo(button2.bottom, margin = 40.dp)
+            end.linkTo(guide, margin = 20.dp)
         })
 
     }
